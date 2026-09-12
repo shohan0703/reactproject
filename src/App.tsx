@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Banner from './components/Banner';
 import Footer from './components/Footer';
 import { ToastContainer, toast } from 'react-toastify';
+import techData from '../public/technologies.json'; 
 
 interface Tech {
   id: string;
@@ -16,22 +17,14 @@ interface Tech {
 }
 
 function App() {
-  const [technologies, setTechnologies] = useState<Tech[]>([]);
+  const [technologies] = useState<Tech[]>(techData);
   const [selectedStack, setSelectedStack] = useState<Tech[]>([]);
-  const [loading, setLoading] = useState<boolean>(true); // 
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch('/technologies.json')
-      .then((res) => res.json())
-      .then((data) => {
-        setTechnologies(data);
-        
-        setTimeout(() => setLoading(false), 1500);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+   
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleAddToStack = (tech: Tech) => {
