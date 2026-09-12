@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import logoText from '../assets/logo-text.png';
 
-const Navbar = () => {
+
+interface NavbarProps {
+  selectedCount?: number;
+}
+
+const Navbar = ({ selectedCount = 0 }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -9,7 +14,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          
+         
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -25,12 +30,12 @@ const Navbar = () => {
             </button>
           </div>
 
-         
+        
           <div className="flex items-center cursor-pointer">
             <img src={logoText} alt="Dev Stack Logo" className="h-8 object-contain" />
           </div>
 
-          
+       
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#home" className="hover:text-black transition">Home</a>
             <a href="#technologies" className="hover:text-black transition">Technologies</a>
@@ -41,6 +46,13 @@ const Navbar = () => {
 
          
           <div className="flex items-center gap-3">
+          
+            {selectedCount > 0 && (
+              <span className="bg-pink-50 text-pink-600 text-xs font-semibold px-3 py-1 rounded-full border border-pink-100">
+                Selected: {selectedCount}
+              </span>
+            )}
+
             <button className="text-sm font-semibold text-gray-700 hover:text-black px-3 py-2">
               Sign In
             </button>
@@ -51,7 +63,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      
+     
       {isOpen && (
         <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-2">
           <a href="#home" className="block text-gray-600 hover:text-black py-2 font-medium">Home</a>
