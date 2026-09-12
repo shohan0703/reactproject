@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Banner from './components/Banner';
+import Footer from './components/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 
 interface Tech {
@@ -183,9 +184,11 @@ function App() {
 
         </div>
       </main>
+      <Footer />
 
       <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
+    
   );
 }
 
