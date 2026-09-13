@@ -1,35 +1,43 @@
-# React + TypeScript + Vite
+# Dev Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Dev Stack Builder is an interactive web application designed to help developers explore, select, and build their ideal technology stack for modern software development.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Frontend: React (TypeScript), Vite
+- Styling: Tailwind CSS
+- Notifications: React Toastify
+- Deployment: Netlify
 
-## React Compiler
+## Key Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Interactive Stack Builder: Add or remove technologies dynamically to construct your ideal tech stack in real-time.
+- Skeleton Loading Animation: Displays smooth UI skeletons while tech data is fetched, ensuring a polished loading experience.
+- Responsive UI & Sticky Sidebar: Fully responsive layout featuring a dynamic sidebar counter and toast feedback on actions.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## React Q&A
 
-## Expanding the Oxlint configuration
+i. What is JSX, and why is it used in React?
+Answer: JSX (JavaScript XML) is a syntax extension that lets us write HTML-like code inside JavaScript. It makes React components visually clear, intuitive to write, and easy to read.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+ii. What is the difference between props and state?
+Answer: 
+- Props: Data passed from a parent component down to a child component (read-only/immutable).
+- State: Local data maintained internally within a component that can change over time and trigger re-renders.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+iii. What does the useState hook do, and where did you use it in this project?
+Answer: useState creates reactive local variables that hold data across renders. In this project, it was used to manage fetched technologies (technologies), user-selected stacks (selectedStack), and loading indicators (loading).
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+iv. What does the useEffect hook do, and why did you need it to load the JSON data?
+Answer: useEffect performs side-effects in functional components. It was used to fetch technology data from ./technologies.json once when the component initially mounts.
+
+v. Why does every item in a .map() list need a unique key prop?
+Answer: The key prop helps React track and identify which items changed, were added, or were removed. This optimizes DOM updates and prevents re-rendering performance bugs.
+
+vi. What is conditional rendering? Show one place you used it.
+Answer: Conditional rendering displays different UI elements based on specific logical conditions. In this project, it was used to render the skeleton loader when loading is true, and the actual technology list when loading is false.
+
+vii. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
+Answer: 
+- Parent to Child: Passed directly via Props.
+- Child to Parent: Passed by executing a callback function provided by the parent as a prop when an event occurs in the child..
